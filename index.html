@@ -18,7 +18,7 @@
 </style>
 
 
-		<title>Hello, world!</title>
+		<title>인공지능 미인상 테스트 웹</title>
 		<link rel="stylesheet" href="style.css" />
 		
 		
@@ -58,11 +58,13 @@
 			<h1 class="title">인공지능 외국 미인상 테스트</h1>
 			<h2 class="subtitle">나는 어떤 나라에서 먹힐까?</h2>
 			<h2 class="subtitle_2"> 얼굴은 정신의 문이요, 초상이다 - 키케로</h2>
-			<div class="container ad-banner">
+			<div class="container ad-banner margi">
 <ins class="kakao_ad_area" style="display:none;" 
  data-ad-unit    = "DAN-lMM7jV9TafV5hq9N" 
  data-ad-width   = "320" 
- data-ad-height  = "50"></ins> 
+  data-ad-height  = "50"> 
+ 	
+ </ins> 
 <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 				
@@ -73,11 +75,24 @@
 				<img src="img/youtube-copy.jpg" alt="" class="youtube-icon" /><a
 					href="https://www.youtube.com/c/%EC%A1%B0%EC%BD%94%EB%94%A9JoCoding/featured"
 					class="youtube-link"
-					>Help by 조코딩 유튜브</a
-				>
+					>제작도움 조코딩 유튜브</a>
 			</div>
 		</section>
-
+		
+    <h3 class="pb-2 d-flex justify-content-center">성별을 선택하세요</h3>
+    <section class="d-flex justify-content-center">
+        <p class="d-flex align-items-center pr-3">여자</p>
+        <div>
+            <input type="checkbox" id="gender">
+            <label for="gender">
+                <span class="knob">
+                    <i></i>
+                </span>
+            </label>
+        </div>
+        <p class="d-flex align-items-center pl-3">남자</p>
+    </section>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> 
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
 			integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
@@ -120,7 +135,7 @@
 				/>
 				<div id="loading" class="animated bounce">
                 <div class="mt-5 spinner-border" role="status">
-                    <span class="sr-only">Loading...</span>
+                    <span class="sr-only"></span>
                 </div>
                 <p class="text-center">AI가 당신의 얼굴을 분석중입니다.</p>
             </div>
@@ -137,15 +152,16 @@
 			
 
 					
-					
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox"></div>
+		
+    <div class="addthis_inline_share_toolbox">
+    	
+    			<div>
             
 					<button type="button" class="mt-3 try-again-btn" onclick="window.location.reload();">
                     <span class="try-again-text">다른 사진으로 재시도</span>
                     </button>
 				</div>
-			</div>
+		
 		</div>
 
 		<div id="webcam-container"></div>
@@ -218,12 +234,22 @@
 			// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
 			// the link to your model provided by Teachable Machine export panel
-			const URL = 'https://teachablemachine.withgoogle.com/models/Iz1jALi05/';
+			let URL;
+			const urlMale = "https://teachablemachine.withgoogle.com/models/hVh6REhp7/";
+			const urlFemale = 'https://teachablemachine.withgoogle.com/models/Iz1jALi05/';
 
 			let model, webcam, labelContainer, maxPredictions;
 
 			// Load the image model and setup the webcam
 			async function init() {
+				
+			if (document.getElementById("gender").checked) {
+                URL = urlMale;
+            } else {
+                URL = urlFemale;
+            }
+				console.log(URL);
+				
 				const modelURL = URL + 'model.json';
 				const metadataURL = URL + 'metadata.json';
 
@@ -251,9 +277,54 @@
 				var resultmessage;
 				var result_explain;
 				var result_explain_2;
+				console.log(gender);
 				console.log(prediction[0].className);
-
+				
+				if (document.getElementById("gender").checked)
+					{
 				switch (prediction[0].className) {
+					case "America":
+						resultmessage = "혹시 당신은 미국의 브래드 피트!??"
+						result_explain = "지금 당장 뉴욕 센트럴파크로 떠나요."
+						result_explain_2 = "앤해서웨이, 아만다 사이프리 같은 분들이 애타게 기다리고 있어요."
+						break;
+					case "Brazil":
+						resultmessage = "브라질에서 먹히는 얼굴을 가지셨군요"
+						result_explain = "지금 당장 정열의 나라 브라질로 떠나요."
+						result_explain_2 = "코파카바나 해변에서 불 같은 밤을!? 쌈바!!"
+						break;
+					case "France":
+						resultmessage = "혹시 당신은 프랑스의 귀공자!??"
+						result_explain = "지금 당장 와인의 나라 프랑스로 떠나요. "
+						result_explain_2 = "그대의 눈동자에 Cheers~!!"		
+						break;
+					case "India":
+						resultmessage = "인도에서 먹히는 얼굴을 가지셨군요"
+						result_explain = "지금 당장 카레의 나라 인도로 떠나요"
+						result_explain_2 = "겐지스의 아름다운 아침을 보내면 행복한 일들이 일어날 것입니다"
+						break;
+					case "Germany":
+						resultmessage = "독일에서 먹히는 얼굴을 가지셨군요"
+						result_explain = "지금 당장 맥주의 나라 독일로 떠나요"
+						result_explain_2 = "혹시 알아요? 옥터버페스트에서 무슨 일이 일어날지??ㅎㅎ"
+						break;
+					case "Spain":
+						resultmessage = "스페인에서 먹히는 얼굴을 가지셨군요"
+						result_explain = "지금 당장 샹그리아의 나라로 떠나요"
+						result_explain_2 = "샹그리아와 하몽에 취하다 보면 좋은 일들이 있을 겁니다ㅎㅎ"
+						break;
+					case "Russia":
+						resultmessage = "러시아에서 먹히는 얼굴을 가지셨군요"
+						result_explain = "지금 당장 킹크랩의 나라로 떠나요"
+						result_explain_2 = "김태희가 밭을 간다는 미녀들의 나라 러시아~! 다들 기다리고 있어요!"
+						break;
+					default:
+						resultmessage = "그대는 사람이 아닙니다"
+				}
+					}
+				else{
+					
+					switch (prediction[0].className) {
 					case "america":
 						resultmessage = "혹시 당신은 미국의 안젤리나 졸리!??"
 						result_explain = "지금 당장 뉴욕 센트럴파크로 떠나요."
@@ -291,9 +362,11 @@
 						break;
 					default:
 						resultmessage = "그대는 사람이 아닙니다"
+				}	
+					
+					
+					
 				}
-				
-				
 
 				$('.result-message-first').html(resultmessage);
 				$('.result-explain').html(result_explain);

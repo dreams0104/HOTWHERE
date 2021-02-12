@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+			crossorigin="anonymous"
+		/>
+		
+		<style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+</style>
+
+
+		<title>Hello, world!</title>
+		<link rel="stylesheet" href="style.css" />
+		
+		
+	<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60266851c3061815"></script>
+
+	</head>
+
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light nav-distance">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">나는 어느 나라에서 먹힐까?</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNavAltMarkup"
+					aria-controls="navbarNavAltMarkup"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-link active" aria-current="page" href="#">Home</a>
+						<a class="nav-link" href="#">Features</a>
+						<a class="nav-link" href="#">Pricing</a>
+						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
+							>Disabled</a
+						>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<section class="section">
+			<h1 class="title">인공지능 외국 미인상 테스트</h1>
+			<h2 class="subtitle">나는 어떤 나라에서 먹힐까?</h2>
+			<h2 class="subtitle_2"> 얼굴은 정신의 문이요, 초상이다 - 키케로</h2>
+		</section>
+		<section class="youtube">
+			<div class="container mt-5 youtube-cover d-flex flex-row-reverse bd-highlight">
+				<img src="img/youtube-copy.jpg" alt="" class="youtube-icon" /><a
+					href="https://www.youtube.com/c/%EC%A1%B0%EC%BD%94%EB%94%A9JoCoding/featured"
+					class="youtube-link"
+					>Help by 조코딩 유튜브</a
+				>
+			</div>
+		</section>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+			integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+			integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+			crossorigin="anonymous"
+		></script>
+
+		<script
+			class="jsbin"
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+		></script>
+
+		<div class="container file-upload">
+			<div class="container image-upload-wrap" style="width: 57%; margin: 0 auto;">
+				<input
+					class="file-upload-input"
+					type="file"
+					onchange="readURL(this);"
+					accept="image/*"
+				/>
+				<div class="drag-text">
+					<img src="img/upload.svg" class="mt-5 pt-5 upload" style="width: 20%;" />
+					<h3 class="mb-5 pb-5 pt-4 upload-text">
+						얼굴 사진을 올려놓거나 눌러서 업로드하세요!
+					</h3>
+				</div>
+			</div>
+
+			<div class="file-upload-content">
+				<img
+					class="file-upload-image"
+					id="face-image"
+					src="#"
+					alt="your image"
+					style="width: 80%;"
+				/>
+				<div id="loading" class="animated bounce">
+                <div class="mt-5 spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <p class="text-center">AI가 당신의 얼굴을 분석중입니다.</p>
+            </div>
+				
+				<!-- 화면 -->
+				
+				<p class="mt-5 result-message-first"></p>
+				<p class="mt-1 result-explain"></p>
+				<p class="mt-1 result-explain-2"></p>
+				<p class="mb-3 similar">닮은 정도</p>
+				<div id="label-container" class="label_container d-flex flex-column justify-content-around"></div
+
+			
+				<div class="image-title-wrap">
+					<!-- <button type="button" onclick="removeUpload()" class="remove-image">
+						Remove <span class="image-title">Uploaded Image</span>
+					</button> -->
+					
+					
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_inline_share_toolbox"></div>
+            
+					<button type="button" class="mt-3 try-again-btn" onclick="window.location.reload();">
+                    <span class="try-again-text">다른 사진으로 재시도</span>
+                    </button>
+				</div>
+			</div>
+		</div>
+
+		<div id="webcam-container"></div>
+
+		<div id="disqus_thread"></div>
+		<script>
+			/**
+			 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+			 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+			/*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+			(function () {
+				// DON'T EDIT BELOW THIS LINE
+				var d = document,
+					s = d.createElement('script');
+				s.src = 'https://wherehot.disqus.com/embed.js';
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+			})();
+		</script>
+		<noscript
+			>Please enable JavaScript to view the
+			<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript
+		>
+		<script>
+			function readURL(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+
+					reader.onload = function (e) {
+						$('.image-upload-wrap').hide();
+	                    $('#loading').show();
+						$('.file-upload-image').attr('src', e.target.result);
+						$('.file-upload-content').show();
+
+						$('.image-title').html(input.files[0].name);
+					};
+
+					reader.readAsDataURL(input.files[0]);
+					init().then(() => {
+						console.log('hello');
+						predict();
+	                    $('#loading').hide();
+					});
+				} else {
+					removeUpload();
+				}
+			}
+
+			function removeUpload() {
+				$('.file-upload-input').replaceWith($('.file-upload-input').clone());
+				$('.file-upload-content').hide();
+				$('.image-upload-wrap').show();
+			}
+			$('.image-upload-wrap').bind('dragover', function () {
+				$('.image-upload-wrap').addClass('image-dropping');
+			});
+			$('.image-upload-wrap').bind('dragleave', function () {
+				$('.image-upload-wrap').removeClass('image-dropping');
+			});
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+		<script type="text/javascript">
+			// More API functions here:
+			// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+			// the link to your model provided by Teachable Machine export panel
+			const URL = 'https://teachablemachine.withgoogle.com/models/Iz1jALi05/';
+
+			let model, webcam, labelContainer, maxPredictions;
+
+			// Load the image model and setup the webcam
+			async function init() {
+				const modelURL = URL + 'model.json';
+				const metadataURL = URL + 'metadata.json';
+
+				// load the model and metadata
+				// Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+				// or files from your local hard drive
+				// Note: the pose library adds "tmImage" object to your window (window.tmImage)
+				model = await tmImage.load(modelURL, metadataURL);
+				maxPredictions = model.getTotalClasses();
+				labelContainer = document.getElementById('label-container');
+				for (let i = 0; i < maxPredictions; i++) {
+					// and class labels
+					labelContainer.appendChild(document.createElement('div'));
+				}
+			}
+
+			// run the webcam image through the image model
+			async function predict() {
+				// predict can take in an image, video or canvas html element
+				var image = document.getElementById('face-image');
+				const prediction = await model.predict(image, false);
+
+				prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
+
+				var resultmessage;
+				var result_explain;
+				var result_explain_2;
+				console.log(prediction[0].className);
+
+				switch (prediction[0].className) {
+					case "america":
+						resultmessage = "혹시 당신은 미국의 안젤리나 졸리!??"
+						result_explain = "지금 당장 뉴욕 센트럴파크로 떠나요."
+						result_explain_2 = "브래드 피트, 디카프리오와 같은 남자들이 당신을 기다릴 것입니다."
+						break;
+					case "brazil":
+						resultmessage = "브라질에서 먹히는 얼굴을 가지셨군요"
+						result_explain = "지금 당장 정열의 나라 브라질로 떠나요."
+						result_explain_2 = "코파카바나 해변에서 불 같은 밤을!? 쌈바!!"
+						break;
+					case "france":
+						resultmessage = "혹시 당신은 프랑스의 엠마 왓슨!??"
+						result_explain = "지금 당장 와인의 나라 프랑스로 떠나요. "
+						result_explain_2 = "그대의 눈동자에 Cheers~!!"		
+						break;
+					case "india":
+						resultmessage = "인도에서 먹히는 얼굴을 가지셨군요"
+						result_explain = "지금 당장 카레의 나라 인도로 떠나요"
+						result_explain_2 = "겐지스의 아름다운 아침을 보내면 행복한 일들이 일어날 것입니다"
+						break;
+					case "germany":
+						resultmessage = "독일에서 먹히는 얼굴을 가지셨군요"
+						result_explain = "지금 당장 맥주의 나라 독일로 떠나요"
+						result_explain_2 = "혹시 알아요? 옥터버페스트에서 무슨 일이 일어날지??ㅎㅎ"
+						break;
+					case "spain":
+						resultmessage = "스페인에서 먹히는 얼굴을 가지셨군요"
+						result_explain = "지금 당장 샹그리아의 나라로 떠나요"
+						result_explain_2 = "샹그리아와 하몽에 취하다 보면 좋은 일들이 있을 겁니다ㅎㅎ"
+						break;
+					case "russia":
+						resultmessage = "러시아에서 먹히는 얼굴을 가지셨군요"
+						result_explain = "지금 당장 킹크랩의 나라로 떠나요"
+						result_explain_2 = "김태희가 밭을 간다는 미녀들의 나라 러시아~! 상당한 미녀시군요!"
+						break;
+					default:
+						resultmessage = "그대는 사람이 아닙니다"
+				}
+				
+				
+
+				$('.result-message-first').html(resultmessage);
+				$('.result-explain').html(result_explain);
+				$('.result-explain-2').html(result_explain_2);
+				for (let i = 0; i < maxPredictions; i++) {
+					const classPrediction =
+						prediction[i].className + ':               ' + Math.ceil(prediction[i].probability.toFixed(2) * 100) + '            %';
+
+					 labelContainer.childNodes[i].innerHTML = classPrediction;
+			
+				}
+
+			}
+		</script>
+	</body>
+
+	Copyright (c) 2021 by Aaron Vanston (https://codepen.io/aaronvanston/pen/yNYOXR) Permission is
+	hereby granted, free of charge, to any person obtaining a copy of this software and associated
+	documentation files (the "Software"), to deal in the Software without restriction, including
+	without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to
+	do so, subject to the following conditions: The above copyright notice and this permission
+	notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS
+	PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+	THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+	EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</html>
